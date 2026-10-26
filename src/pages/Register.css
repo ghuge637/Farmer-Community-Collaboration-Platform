@@ -1,0 +1,380 @@
+/* =========================================
+   REGISTER & LOGIN PAGES - MODERN FORM DESIGN
+   ========================================= */
+
+.register-page {
+  max-width: 480px;
+  margin: var(--spacing-2xl) auto;
+  padding: var(--spacing-xl);
+  background: var(--card-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.register-page h2 {
+  margin: 0 0 var(--spacing-xl) 0;
+  font-size: var(--font-size-2xl);
+  color: var(--agri-green);
+  text-align: center;
+  font-weight: 700;
+}
+
+.register-page label {
+  display: block;
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+  color: var(--text-dark);
+  font-size: var(--font-size-base);
+}
+
+.register-page input {
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  box-sizing: border-box;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background-color: var(--card-white);
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.register-page input:focus {
+  outline: none;
+  border-color: var(--agri-green);
+  background-color: var(--card-white);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.register-page input::placeholder {
+  color: var(--text-muted);
+}
+
+.register-page input:disabled {
+  background-color: var(--bg-earth);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.register-page .error {
+  color: var(--clay-red);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--clay-red-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clay-red-light);
+  display: block;
+  animation: slideUp 0.2s ease-out;
+}
+
+.register-page .success {
+  padding: var(--spacing-md);
+  background: var(--agri-green-bg);
+  border: 2px solid var(--agri-green);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  color: var(--agri-green-dark);
+  font-weight: 500;
+  text-align: center;
+}
+
+.register-page button {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--agri-green);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  min-height: 48px;
+  margin-top: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.register-page button:hover:not(:disabled) {
+  background: var(--agri-green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.register-page button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.register-page button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.register-page > p {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-medium);
+  font-size: var(--font-size-base);
+}
+
+.register-page > p a {
+  color: var(--agri-green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.register-page > p a:hover {
+  color: var(--agri-green-dark);
+  text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 600px) {
+  .register-page {
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-lg);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    max-width: 100%;
+    box-shadow: none;
+    border-top: 4px solid var(--agri-green);
+    border-bottom: 4px solid var(--agri-green);
+  }
+
+  .register-page h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .register-page {
+    max-width: 420px;
+    padding: var(--spacing-lg);
+  }
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   EASY OTP & QUICK LOGIN STYLES
+   ========================================= */
+
+.auth-tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-medium);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+  min-height: 38px !important;
+}
+
+.auth-tab.active {
+  background: white;
+  color: var(--agri-green);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: white;
+  margin-top: var(--spacing-sm);
+  transition: border-color 0.2s ease;
+}
+
+.phone-input-wrapper:focus-within {
+  border-color: var(--agri-green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.phone-prefix {
+  padding: 0 14px;
+  font-weight: 600;
+  color: #334155;
+  background: #f8fafc;
+  border-right: 1px solid var(--border-subtle);
+  height: 46px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.phone-input-wrapper input {
+  border: none !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.otp-boxes {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: var(--spacing-md) 0;
+}
+
+.otp-input {
+  width: 46px !important;
+  height: 52px !important;
+  text-align: center;
+  font-size: 1.4rem !important;
+  font-weight: 700;
+  border-radius: 10px !important;
+  border: 2px solid #cbd5e1 !important;
+  color: #1e293b;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+.otp-input:focus {
+  border-color: var(--agri-green) !important;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important;
+}
+
+.otp-timer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+.resend-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--agri-green) !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  min-height: auto !important;
+  margin-top: 0 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer;
+}
+
+.resend-btn:disabled {
+  color: #94a3b8 !important;
+  cursor: not-allowed !important;
+}
+
+.dev-otp-banner {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  color: #1e40af;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  strong {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    background: #dbeafe;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+}
+
+.new-user-welcome-box {
+  background: #f0fdf4;
+  border: 1.5px dashed #22c55e;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+  animation: slideUp 0.3s ease-out;
+}
+
+.new-user-welcome-box h4 {
+  margin: 0 0 6px 0;
+  color: #15803d;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.new-user-welcome-box p {
+  margin: 0 0 10px 0;
+  color: #166534;
+  font-size: 0.88rem;
+}
+
+.new-user-welcome-box input {
+  margin-top: 4px !important;
+  border-color: #86efac !important;
+}
+
+.new-user-welcome-box input:focus {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2) !important;
+}
+
+.sms-info-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  color: #166534;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+
+

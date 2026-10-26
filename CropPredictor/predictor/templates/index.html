@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPredict Pro | AI Crop & Soil Advisor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --secondary: #FFC107;
+            --secondary-dark: #FFA000;
+            --light: #F5F5F5;
+            --light-gray: #EEEEEE;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #FFFFFF;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --info: #2196F3;
+            --border-radius: 16px;
+            --box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--white);
+            padding: 1.25rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h1 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .version-badge {
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: super;
+        }
+        
+        .subtitle {
+            color: var(--gray);
+            font-weight: 400;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-title {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .card-title i {
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        label i {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--light-gray);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.2);
+        }
+        
+        .input-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .range-value {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(46, 125, 50, 0.3);
+        }
+        
+        button:hover::after {
+            left: 100%;
+        }
+        
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #F1F8E9, #DCEDC8);
+            border-left: 6px solid var(--primary);
+            animation: fadeIn 0.6s ease;
+            display: none;
+        }
+        
+        .result-card.show {
+            display: block;
+        }
+        
+        .result-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .predicted-crop {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: capitalize;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border: 2px dashed var(--primary-light);
+        }
+        
+        .predicted-crop i {
+            font-size: 1.8rem;
+            color: var(--success);
+        }
+        
+        .fertilizer-card {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+        
+        .fertilizer-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .fertilizer-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .fertilizer-item {
+            background-color: var(--white);
+            padding: 1.25rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+        
+        .fertilizer-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fertilizer-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        .fertilizer-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+        
+        .fertilizer-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+        
+        .soil-health-card {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            border-left: 6px solid var(--info);
+        }
+        
+        .soil-title {
+            font-size: 1.3rem;
+            color: var(--info);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .soil-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .soil-metric {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .soil-metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--info), #64B5F6);
+        }
+        
+        .metric-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--info);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        
+        .optimal {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .low {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+        
+        .high {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: var(--warning);
+        }
+        
+        .acidic {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+        
+        .alkaline {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: var(--warning);
+        }
+        
+        .neutral {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .metric-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .soil-recommendations {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .recommendation-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .recommendation-list {
+            list-style-type: none;
+        }
+        
+        .recommendation-item {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .recommendation-item i {
+            color: var(--primary);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .feature {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 8px 16px rgba(46, 125, 50, 0.3);
+        }
+        
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .feature p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .soil-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .fertilizer-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                padding: 1rem 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.4rem;
+            }
+            
+            .predicted-crop {
+                font-size: 1.8rem;
+                padding: 1rem;
+            }
+            
+            .feature {
+                padding: 2rem 1.5rem;
+            }
+            
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-leaf"></i></span>
+                    <h1>AgroConnect <span class="version-badge">PRO</span></h1>
+                </div>
+                <p class="subtitle">Advanced AI-powered precision agriculture system for optimal crop recommendations and comprehensive soil analysis</p>
+                
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <i class="fas fa-seedling stat-icon"></i>
+                        <span>1,200+ Crop Varieties</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-globe-americas stat-icon"></i>
+                        <span>50+ Countries</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-chart-line stat-icon"></i>
+                        <span>95% Accuracy</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-grid">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-seedling"></i> Crop Recommendation</h2>
+                <p style="color: var(--gray); margin-bottom: 1.5rem;">Enter your soil and weather parameters to receive the best crop recommendation for your land</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="N">
+                                <i class="fas fa-atom"></i> Nitrogen (N)
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Essential for leaf growth and plant color</span>
+                                </span>
+                            </label>
+                            <input type="number" name="N" id="N" placeholder="e.g. 25 ppm" required min="0" max="140">
+                            <div class="input-range">
+                                <span class="range-value">Low (0-20)</span>
+                                <span class="range-value">Optimal (20-50)</span>
+                                <span class="range-value">High (50-140)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="P">
+                                <i class="fas fa-fire"></i> Phosphorus (P)
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Important for root development and flowering</span>
+                                </span>
+                            </label>
+                            <input type="number" name="P" id="P" placeholder="e.g. 42 ppm" required min="5" max="145">
+                            <div class="input-range">
+                                <span class="range-value">Low (0-15)</span>
+                                <span class="range-value">Optimal (15-40)</span>
+                                <span class="range-value">High (40-145)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="K">
+                                <i class="fas fa-bolt"></i> Potassium (K)
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Vital for fruit quality and disease resistance</span>
+                                </span>
+                            </label>
+                            <input type="number" name="K" id="K" placeholder="e.g. 35 ppm" required min="0" max="205">
+                            <div class="input-range">
+                                <span class="range-value">Low (0-30)</span>
+                                <span class="range-value">Optimal (30-80)</span>
+                                <span class="range-value">High (80-205)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="temperature">
+                                <i class="fas fa-temperature-high"></i> Temperature
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Average daily temperature in Celsius</span>
+                                </span>
+                            </label>
+                            <input type="number" step="0.1" name="temperature" id="temperature" placeholder="e.g. 25.5°C" required min="-10" max="50">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="humidity">
+                                <i class="fas fa-tint"></i> Humidity
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Relative humidity percentage</span>
+                                </span>
+                            </label>
+                            <input type="number" step="0.1" name="humidity" id="humidity" placeholder="e.g. 65.5%" required min="0" max="100">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="ph">
+                                <i class="fas fa-vial"></i> Soil pH
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Acidity/Alkalinity (0-14 scale)</span>
+                                </span>
+                            </label>
+                            <input type="number" step="0.1" name="pH" id="pH" placeholder="e.g. 6.5" required min="0" max="14">
+                            <div class="input-range">
+                                <span class="range-value">Acidic (0-6.5)</span>
+                                <span class="range-value">Neutral (6.5-7.5)</span>
+                                <span class="range-value">Alkaline (7.5-14)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="rainfall">
+                                <i class="fas fa-cloud-rain"></i> Rainfall
+                                <span class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltiptext">Annual precipitation in millimeters</span>
+                                </span>
+                            </label>
+                            <input type="number" step="0.1" name="rainfall" id="rainfall" placeholder="e.g. 1200 mm" required min="0">
+                        </div>
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-calculator"></i> Analyze & Recommend
+                    </button>
+                </form>
+            </div>
+            
+            <div class="result-container">
+                {% if prediction %}
+                <div class="card result-card show">
+                    <h2 class="result-title"><i class="fas fa-chart-line"></i> Recommendation Results</h2>
+                    <p>Based on comprehensive analysis of your soil and weather parameters, the optimal crop for your land is:</p>
+                    <div class="predicted-crop">
+                        <i class="fas fa-check-circle"></i> {{ prediction }}
+                    </div>
+                    
+                    {% if fertilizers %}
+                    <div class="fertilizer-card">
+                        <h3 class="fertilizer-title"><i class="fas fa-flask"></i> Recommended Fertilizers</h3>
+                        <ul class="fertilizer-list">
+                            <li class="fertilizer-item">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div>
+                                    <div class="fertilizer-name">{{ fertilizers.0 }}</div>
+                                    <div class="fertilizer-desc">Balanced NPK formula for optimal growth</div>
+                                </div>
+                            </li>
+                            <li class="fertilizer-item">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div>
+                                    <div class="fertilizer-name">{{ fertilizers.1 }}</div>
+                                    <div class="fertilizer-desc">Specialized formula for flowering/fruiting</div>
+                                </div>
+                            </li>
+                            <li class="fertilizer-item">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div>
+                                    <div class="fertilizer-name">{{ fertilizers.2 }}</div>
+                                    <div class="fertilizer-desc">Organic supplement for soil health</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="card soil-health-card">
+                    <h2 class="soil-title"><i class="fas fa-microscope"></i> Comprehensive Soil Analysis</h2>
+                    <div class="soil-grid">
+                        <div class="soil-metric">
+                            <div class="metric-name">
+                                <i class="fas fa-atom"></i> Nitrogen (N)
+                            </div>
+                            <div class="metric-value">{{ N }} ppm</div>
+                            <span class="metric-status {{ soil_health.Nitrogen|lower }}">{{ soil_health.Nitrogen }}</span>
+                            <p class="metric-desc">Essential for leaf growth and chlorophyll production</p>
+                        </div>
+
+                        <div class="soil-metric">
+                            <div class="metric-name">
+                                <i class="fas fa-fire"></i> Phosphorus (P)
+                            </div>
+                            <div class="metric-value">{{ P }} ppm</div>
+                            <span class="metric-status {{ soil_health.Phosphorus|lower }}">{{ soil_health.Phosphorus }}</span>
+                            <p class="metric-desc">Critical for root development and energy transfer</p>
+                        </div>
+
+                        <div class="soil-metric">
+                            <div class="metric-name">
+                                <i class="fas fa-bolt"></i> Potassium (K)
+                            </div>
+                            <div class="metric-value">{{ K }} ppm</div>
+                            <span class="metric-status {{ soil_health.Potassium|lower }}">{{ soil_health.Potassium }}</span>
+                            <p class="metric-desc">Improves fruit quality and disease resistance</p>
+                        </div>
+
+                        <div class="soil-metric">
+                            <div class="metric-name">
+                                <i class="fas fa-vial"></i> Soil pH
+                            </div>
+                            <div class="metric-value">{{ ph }}</div>
+                            <span class="metric-status {% if soil_health.pH == 'Too Acidic' %}acidic{% elif soil_health.pH == 'Too Alkaline' %}alkaline{% else %}neutral{% endif %}">
+                                {{ soil_health.pH }}
+                            </span>
+                            <p class="metric-desc">Affects nutrient availability to plants</p>
+                        </div>
+                    </div>
+                    
+                    <div class="soil-recommendations">
+                        <h3 class="recommendation-title"><i class="fas fa-lightbulb"></i> Soil Improvement Recommendations</h3>
+                        <ul class="recommendation-list">
+                            {% if soil_health.Nitrogen == 'Low' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Add nitrogen-rich fertilizers like urea or ammonium sulfate to boost leaf growth</span>
+                            </li>
+                            {% elif soil_health.Nitrogen == 'High' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Reduce nitrogen inputs and consider planting nitrogen-fixing cover crops</span>
+                            </li>
+                            {% endif %}
+                            
+                            {% if soil_health.Phosphorus == 'Low' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Apply phosphorus-rich fertilizers like superphosphate or bone meal for root development</span>
+                            </li>
+                            {% elif soil_health.Phosphorus == 'High' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Limit phosphorus applications to prevent nutrient imbalances</span>
+                            </li>
+                            {% endif %}
+                            
+                            {% if soil_health.pH == 'Too Acidic' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Apply lime to raise pH and improve nutrient availability</span>
+                            </li>
+                            {% elif soil_health.pH == 'Too Alkaline' %}
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Add sulfur or organic matter to lower pH for better nutrient uptake</span>
+                            </li>
+                            {% endif %}
+                            
+                            <li class="recommendation-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Regularly test soil every 2-3 years to monitor nutrient changes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card" style="background: linear-gradient(135deg, #FFF8E1, #FFECB3); border-left: 6px solid var(--secondary);">
+                    <h2 class="card-title"><i class="fas fa-lightbulb"></i> How It Works</h2>
+                    <p style="margin-bottom: 1.5rem;">Our AI analyzes multiple factors to determine the best crop for your conditions:</p>
+                    <ul style="list-style-type: none; margin-bottom: 1.5rem;">
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.2rem;"></i>
+                            <span>Soil nutrient levels (N, P, K)</span>
+                        </li>
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.2rem;"></i>
+                            <span>Soil pH balance</span>
+                        </li>
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.2rem;"></i>
+                            <span>Climate conditions (temperature, humidity)</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 0.2rem;"></i>
+                            <span>Annual rainfall patterns</span>
+                        </li>
+                    </ul>
+                    <p>Fill in the form to get your personalized crop recommendation!</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>Advanced AI Analysis</h3>
+                <p>Our machine learning models analyze thousands of data points to provide the most accurate recommendations tailored to your specific conditions.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-database"></i></div>
+                <h3>Comprehensive Database</h3>
+                <p>Access to a global database of 1,200+ crop varieties and their optimal growing conditions for precise recommendations.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3>Detailed Soil Insights</h3>
+                <p>Get comprehensive soil health analysis with actionable insights to improve your land's productivity and sustainability.</p>
+            </div>
+        </div>
+    </div>
+    
+    {% if prediction %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Smooth scroll to results
+                const resultCard = document.querySelector('.result-card');
+                resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Animate soil metrics
+                const metrics = document.querySelectorAll('.soil-metric');
+                metrics.forEach((metric, index) => {
+                    setTimeout(() => {
+                        metric.style.opacity = '1';
+                        metric.style.transform = 'translateY(0)';
+                    }, 200 * index);
+                });
+            });
+        </script>
+    {% endif %}
+</body>
+</html>

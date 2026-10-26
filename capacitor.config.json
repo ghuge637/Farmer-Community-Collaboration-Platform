@@ -1,0 +1,16 @@
+{
+  "appId": "com.farmer.mazeshet",
+  "appName": "Maze Shet",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#2d6a4f",
+      "showSpinner": false
+    }
+  }
+}

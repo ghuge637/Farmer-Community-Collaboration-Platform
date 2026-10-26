@@ -1,0 +1,54 @@
+.create-post-modal-bg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 62px; /* stop above bottom nav bar */
+  z-index: 2000; /* below nav bar */
+  background: rgba(0,0,0,0.18);
+  /* Removed blur so bottom nav bar stays clear */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+.create-post-modal {
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.10);
+  width: 100vw;
+  max-width: 420px;
+  min-height: 120px;
+  padding: 24px 18px 48px 18px; /* even more bottom padding for sticky bar */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 62px; /* sit directly above nav bar */
+  animation: slideUp 0.22s cubic-bezier(.4,1.4,.6,1) 1;
+  max-height: calc(100vh - 62px);
+  overflow-y: auto;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  z-index: 4001;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.create-post-close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  color: #888;
+  cursor: pointer;
+  z-index: 2;
+}
+@media (min-width: 700px) {
+  .create-post-modal-bg { align-items: center; bottom: 0; }
+  .create-post-modal { border-radius: 18px; }
+}

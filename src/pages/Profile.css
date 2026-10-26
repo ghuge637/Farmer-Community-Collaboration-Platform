@@ -1,0 +1,564 @@
+/* =========================================
+   PROFILE PAGE - MODERN CARD DESIGN
+   ========================================= */
+
+.profile-page {
+  max-width: 900px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-md);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* =========================================
+   PROFILE HEADER
+   ========================================= */
+.profile-header {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  background: var(--card-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  border-bottom: 3px solid var(--agri-green);
+  flex-wrap: wrap;
+}
+
+.glassmorphism-card {
+  background: var(--card-white);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+}
+
+.gradient-header {
+  background: linear-gradient(135deg, var(--card-white) 0%, var(--agri-green-bg) 100%);
+}
+
+/* Avatar */
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+  border: 4px solid var(--agri-green-bg);
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+}
+
+.floating-avatar {
+  animation: float 3s ease-in-out infinite;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Profile Info */
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.info h2 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-2xl);
+  color: var(--text-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.info .bio {
+  margin: var(--spacing-md) 0 0 0;
+  color: var(--text-medium);
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+}
+
+/* Expert Badge */
+.expert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--agri-green);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.expert-badge:hover {
+  transform: scale(1.05);
+}
+
+.expert-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Tags */
+.tag {
+  background: var(--agri-green-bg);
+  color: var(--agri-green);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  display: inline-block;
+  margin: var(--spacing-xs);
+  transition: all var(--transition-fast);
+}
+
+.tag:hover {
+  background: var(--agri-green);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Buttons */
+.follow-btn {
+  background-color: var(--agri-green);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+}
+
+.follow-btn:hover:not(:disabled) {
+  background-color: var(--agri-green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.follow-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.link-btn {
+  background: transparent;
+  color: var(--agri-green);
+  border: 2px solid var(--agri-green);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  margin-left: var(--spacing-sm);
+}
+
+.link-btn:hover {
+  background: var(--agri-green-bg);
+  transform: translateY(-2px);
+}
+
+/* Edit Form */
+.edit-form {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-earth);
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background-color: var(--card-white);
+  transition: all var(--transition-fast);
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  outline: none;
+  border-color: var(--agri-green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.edit-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.edit-form > div {
+  margin-top: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   COURSES SECTION
+   ========================================= */
+.courses-section {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-xl);
+  background: var(--card-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--agri-green);
+}
+
+.courses-section h3 {
+  margin: 0 0 var(--spacing-lg) 0;
+  font-size: var(--font-size-xl);
+  color: var(--agri-green);
+  font-weight: 700;
+}
+
+.courses-section > button {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--agri-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.courses-section > button:hover {
+  background: var(--agri-green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.courses-section form {
+  margin-bottom: var(--spacing-xl);
+  background: var(--agri-green-bg);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--agri-green-light);
+}
+
+.courses-section form h4 {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--agri-green-dark);
+  font-weight: 700;
+}
+
+.courses-section form > div {
+  margin-bottom: var(--spacing-md);
+}
+
+.courses-section form label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.courses-section form input,
+.courses-section form textarea,
+.courses-section form select {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background-color: var(--card-white);
+  transition: all var(--transition-fast);
+}
+
+.courses-section form input:focus,
+.courses-section form textarea:focus,
+.courses-section form select:focus {
+  outline: none;
+  border-color: var(--agri-green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.courses-section form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Course Cards */
+.courses-section > div > div {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-earth);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.courses-section > div > div:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--agri-green-bg);
+}
+
+.courses-section > div > div > div:first-child {
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.courses-section > div > div > div:nth-child(2) {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+.courses-section > div > div a {
+  display: inline-block;
+  margin-right: var(--spacing-md);
+  color: var(--agri-green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.courses-section > div > div a:hover {
+  color: var(--agri-green-dark);
+  text-decoration: underline;
+}
+
+/* =========================================
+   PROFILE POSTS
+   ========================================= */
+.profile-posts {
+  margin-top: var(--spacing-xl);
+}
+
+.profile-posts h3 {
+  margin: 0 0 var(--spacing-lg) 0;
+  font-size: var(--font-size-xl);
+  color: var(--agri-green);
+  font-weight: 700;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-light);
+}
+
+.profile-post {
+  border: 1px solid var(--border-light);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+  background: var(--card-white);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.profile-post:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--agri-green-bg);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.post-body {
+  margin-top: var(--spacing-md);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.7;
+  color: var(--text-dark);
+}
+
+.post-meta {
+  margin-top: var(--spacing-md);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.profile-post-image {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+  display: block;
+  box-shadow: var(--shadow-sm);
+}
+
+.caption {
+  margin-top: var(--spacing-md);
+  font-style: italic;
+  color: var(--text-medium);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+  .profile-page {
+    margin: var(--spacing-md) auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .info h2 {
+    justify-content: center;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .courses-section {
+    padding: var(--spacing-md);
+  }
+
+  .edit-form {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 0;
+  }
+
+  .profile-header {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: var(--spacing-md);
+  }
+
+  .courses-section {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: var(--spacing-md);
+  }
+
+  .profile-post {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}

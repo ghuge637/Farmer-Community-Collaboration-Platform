@@ -1,0 +1,67 @@
+/* =========================================
+   ACTION BOX - SIDEBAR ACTIONS
+   ========================================= */
+
+.action-box {
+  background: var(--card-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: stretch;
+  justify-content: flex-start;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-base);
+}
+
+.action-box:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.action-btn {
+  background: var(--agri-green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 48px;
+  box-shadow: var(--shadow-sm);
+}
+
+.action-btn:hover {
+  background: var(--agri-green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn svg {
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.action-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Hide on mobile and tablet */
+@media (max-width: 900px) {
+  .action-box {
+    display: none;
+  }
+}

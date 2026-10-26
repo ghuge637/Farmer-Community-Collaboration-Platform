@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Spring Boot backend",
+			"type": "shell",
+			"command": "mvn clean package -DskipTests",
+			"args": [],
+			"problemMatcher": [
+				"$javac"
+			],
+			"group": "build"
+		}
+	]
+}
